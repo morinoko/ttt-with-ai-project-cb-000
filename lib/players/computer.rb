@@ -41,6 +41,7 @@ module Players
            move = win_combo.select { |index| !board.taken?( index + 1 ) }
            move = (move.to_i + 1).to_s
         end
+      end
 
         # ( board_combo[ 0 ] == opponent && board_combo[ 1 ] == opponent && board_combo[ 3 ] == " " ) ||
         # ( board_combo[ 0 ] == opponent && board_combo[ 1 ] == " " && board_combo[ 3 ] == opponent ) ||
@@ -56,6 +57,6 @@ module Players
     def opponent
       self.token == "X" ? "O" : "X"
     end
-
+    
   end
 end
