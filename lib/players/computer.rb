@@ -3,16 +3,6 @@ module Players
   class Computer < Player
     POSSIBLE_MOVES = [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
     CORNER_MOVES = [ "1", "3", "7", "9" ]
-    WIN_COMBINATIONS = [
-      [0,1,2], # Top row
-      [3,4,5], # Middle row
-      [6,7,8], # Bottom row
-      [0,3,6], # Left column
-      [1,4,7], # Middle column
-      [2,5,8], # Right column
-      [6,4,2], # Diagonal left bottom to right Top
-      [0,4,8]  # Diagonal left top to right bottom
-    ]
 
     def move( board )
       move = nil
@@ -45,7 +35,7 @@ module Players
     end
 
     def ready_to_win?( board )
-      WIN_COMBINATIONS.detect do |win_combo|
+      Game::WIN_COMBINATIONS.detect do |win_combo|
         win_index_1 = win_combo[0]
         win_index_2 = win_combo[1]
         win_index_3 = win_combo[2]
@@ -65,7 +55,7 @@ module Players
     def block( board )
       row_to_block = ready_to_win? (board)
       position_to_block = row_to_block.detect { |position| position != opponent }
-      (position_to_block + 1).to_s
+      move = (position_to_block + 1).to_s
     end
 
     def opponent
