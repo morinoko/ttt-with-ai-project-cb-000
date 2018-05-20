@@ -4,7 +4,7 @@ module Players
     VALID_MOVES = (1..9).to_a.collect { |position| position.to_s }
 
     def move(board)
-      random_move
+      random_move(board)
     end
 
     def random_move(board)
