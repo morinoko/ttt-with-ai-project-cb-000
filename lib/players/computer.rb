@@ -35,6 +35,11 @@ module Players
     def ready_to_win?( board )
 
 
+    end
 
+    def opponent
+      self.token == "X" ? "O" : "X"
+    end
+    
   end
 end
