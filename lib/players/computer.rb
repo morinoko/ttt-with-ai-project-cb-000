@@ -11,7 +11,7 @@ module Players
       elsif CORNER_MOVES.any? { |corner| !board.taken?( corner ) }
         move = corner_move( board )
       else
-        move = random_move(board)
+        move = random_move( board )
       end
       move
     end
@@ -34,7 +34,7 @@ module Players
 
     def ready_to_win?( board )
 
-      
+
 
   end
 end
