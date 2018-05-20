@@ -60,18 +60,37 @@ class Game
     player = current_player
     player_move = player.move(@board)
 
-    if @board.valid_move?( player_move )
+    if !@board.valid_move?( player_move )
+      turn
+    else
+      @board.valid_move?( player_move )
       puts "Turn #{@board.turn_count + 1}:"
       @board.display
       @board.update( player_move, player )
       puts "\nPlayer #{player.token} moved to position #{player_move}"
       @board.display
       puts "\n\n"
-    else
-      if @board.taken?( player_move )
-        puts "Make sure you choose a position that's not taken :)"
-      end
-      turn
+    end
+  end
+
+  def choose_players
+    puts "How many players do you want to play with? 0, 1, or 2?"
+    num_players = ""
+
+    until num_players =~ /[012]/
+      puts "Please enter only 0, 1, or 2"
+      num_players = gets.strip
+    end
+
+    case num_players
+      when "0"
+        @player_1 = Players::Computer.new( "X" )
+        @player_2 = Players::Computer.new( "O" )
+      when "1"
+        @player_1 = Players::Human.new( "X" )
+        @player_2 = Players::Computer.new( "O" )
+      else
+        self
     end
   end
 
@@ -85,6 +104,11 @@ class Game
     elsif draw?
       puts "Cat's Game!"
     end
+  end
+
+  def start
+    choose_players
+    play
   end
 
   private
