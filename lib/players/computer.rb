@@ -64,7 +64,8 @@ module Players
     end
 
     def block( board )
-      random_move( board )
+      row_to_block = ready_to_win? (board)
+      position_to_block = row_to_block.detect { |position| position != opponent }
     end
 
     def opponent
