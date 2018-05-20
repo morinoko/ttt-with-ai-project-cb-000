@@ -2,8 +2,8 @@ module Players
 
   class Human < Player
     def move(board)
-      puts "Where do you want to move?"
-      gets.chomp
+      puts "Player #{self.token}, where do you want to move? Enter 1 - 9"
+      gets.strip
     end
 
   end

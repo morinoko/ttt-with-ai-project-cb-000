@@ -2,13 +2,11 @@ class Board
   attr_accessor :cells
 
   def initialize
-    @cells = []
-    create_clear_cells
+    reset!
   end
 
   def reset!
-    @cells = []
-    create_clear_cells
+    @cells = Array.new(9, " ")
   end
 
   def display
@@ -19,8 +17,8 @@ class Board
     puts " #{@cells[ 6 ]} | #{@cells[ 7 ]} | #{@cells[ 8 ]} "
   end
 
-  def position( user_input )
-    index = input_to_index( user_input )
+  def position( player_input )
+    index = input_to_index( player_input )
     @cells[ index ]
   end
 
@@ -33,29 +31,25 @@ class Board
   end
 
   # Check if a given cell has already been filled
-  def taken?( position )
-    position( position ) =~ /[XO]/ ? true : false
+  def taken?( player_input )
+    position( player_input ) =~ /[XO]/ ? true : false
   end
 
   # Determines valid move if cell is free and if position is within range
-  def valid_move?( position )
-    position.to_i >= 1 && position.to_i <= 9 && !taken?(position)
+  def valid_move?( player_input )
+    player_input.to_i >= 1 && player_input.to_i <= 9 && !taken?( player_input )
   end
 
-  def update( position, player )
-    if valid_move?( position )
-      index = input_to_index( position )
+  def update( player_input, player )
+    if valid_move?( player_input )
+      index = input_to_index( player_input )
       @cells[ index ] = player.token
     end
   end
 
   private
 
-  def create_clear_cells
-    9.times { @cells << " " }
-  end
-
-  def input_to_index( position )
-    position.to_i - 1
+  def input_to_index( input )
+    input.to_i - 1
   end
 end
