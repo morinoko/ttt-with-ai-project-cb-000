@@ -66,6 +66,7 @@ module Players
     def block( board )
       row_to_block = ready_to_win? (board)
       position_to_block = row_to_block.detect { |position| position != opponent }
+      (position_to_block + 1).to_s
     end
 
     def opponent
