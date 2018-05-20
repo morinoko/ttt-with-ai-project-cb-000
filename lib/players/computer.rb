@@ -4,6 +4,8 @@ module Players
     POSSIBLE_MOVES = (1..9).to_a.collect { |position| position.to_s }
 
     def move(board)
+      if !board.taken?( "5" )
+        move = 5
       
       random_move(board)
     end
