@@ -26,6 +26,7 @@ module Players
         move = random_move( board )
       end
       move
+      binding.pry
     end
 
     def random_move( board )
