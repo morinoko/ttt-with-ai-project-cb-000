@@ -70,6 +70,7 @@ class Game
       puts "\nPlayer #{player.token} moved to position #{player_move}"
       @board.display
       puts "\n\n"
+      player = current_player
     end
   end
 
