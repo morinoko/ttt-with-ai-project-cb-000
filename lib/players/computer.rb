@@ -8,6 +8,8 @@ module Players
       move = nil
       if !board.taken?( "5" )
         move = "5"
+      elsif CORNER_MOVES.any? { |corner| !board.taken?( corner ) }
+        move = corner_move
       else
         move = random_move(board)
       end
@@ -29,6 +31,6 @@ module Players
       end
       move
     end
-    
+
   end
 end
