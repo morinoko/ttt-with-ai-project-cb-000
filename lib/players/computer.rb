@@ -51,7 +51,7 @@ module Players
     end
 
     def block( board )
-      
+      random_move( board )
     end
 
     def opponent
