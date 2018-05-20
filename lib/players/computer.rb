@@ -1,15 +1,40 @@
 module Players
 
   class Computer < Player
-    def move(board)
-      valid_moves = (1..9).to_a.collect { |position| position.to_s }
+    POSSIBLE_MOVES = [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    CORNER_MOVES = [ "1", "3", "7", "9" ]
 
-      move = valid_moves.sample
-      while board.taken?( move )
-        move = valid_moves.sample
+    def move( board )
+      move = nil
+      if !board.taken?( "5" )
+        move = "5"
+      elsif CORNER_MOVES.any? { |corner| !board.taken?( corner ) }
+        move = corner_move( board )
+      else
+        move = random_move( board )
       end
       move
     end
-  end
 
+    def random_move( board )
+      move = POSSIBLE_MOVES.sample
+      while board.taken?( move )
+        move = POSSIBLE_MOVES.sample
+      end
+      move
+    end
+
+    def corner_move( board )
+      move = CORNER_MOVES.sample
+      while board.taken?( move )
+        move = CORNER_MOVES.sample
+      end
+      move
+    end
+
+    def opponent
+      self.token == "X" ? "O" : "X"
+    end
+
+  end
 end
