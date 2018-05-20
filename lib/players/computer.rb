@@ -8,9 +8,9 @@ module Players
     end
 
     def random_move
-      move = valid_moves.sample
+      move = VALID_MOVES.sample
       while board.taken?( move )
-        move = valid_moves.sample
+        move = VALID_MOVES.sample
       end
       move
     end
