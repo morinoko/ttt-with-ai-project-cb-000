@@ -34,26 +34,6 @@ module Players
       move
     end
 
-    def ready_to_win?( board )
-      Game::WIN_COMBINATIONS.detect do |win_combo|
-        if win_combo.select { |index| board.position( index + 1 ) == token }.size == 2 &&
-           win_combo.any? { |index| board.position( index + 1 ) == " " }
-           move = win_combo.select { |index| !board.taken?( index + 1 ) }.first
-           move = (move.to_i + 1).to_s
-        end
-      end
-
-        # ( board_combo[ 0 ] == opponent && board_combo[ 1 ] == opponent && board_combo[ 3 ] == " " ) ||
-        # ( board_combo[ 0 ] == opponent && board_combo[ 1 ] == " " && board_combo[ 3 ] == opponent ) ||
-        # ( board_combo[ 0 ] == " " && board_combo[ 1 ] == opponent && board_combo[ 3 ] == opponent )
-    end
-
-    def block( board )
-      row_to_block = ready_to_win? (board)
-      position_to_block = row_to_block.detect { |position| position != opponent }
-      move = (position_to_block + 1).to_s
-    end
-
     def opponent
       self.token == "X" ? "O" : "X"
     end
