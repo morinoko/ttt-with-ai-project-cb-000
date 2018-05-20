@@ -7,7 +7,7 @@ module Players
       random_move
     end
 
-    def random_move
+    def random_move(board)
       move = VALID_MOVES.sample
       while board.taken?( move )
         move = VALID_MOVES.sample
