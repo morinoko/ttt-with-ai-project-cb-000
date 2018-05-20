@@ -38,7 +38,7 @@ module Players
       Game::WIN_COMBINATIONS.detect do |win_combo|
         if win_combo.select { |index| board.position( index + 1 ) == token }.size == 2 &&
            win_combo.any? { |index| board.position( index + 1 ) == " " }
-           move = win_combo.select { |index| !board.taken?( index + 1 ) }
+           move = win_combo.select { |index| !board.taken?( index + 1 ) }.first
            move = (move.to_i + 1).to_s
         end
       end
@@ -57,6 +57,6 @@ module Players
     def opponent
       self.token == "X" ? "O" : "X"
     end
-    
+
   end
 end
