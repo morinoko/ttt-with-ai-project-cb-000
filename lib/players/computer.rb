@@ -50,6 +50,10 @@ module Players
       end
     end
 
+    def block( board )
+      
+    end
+
     def opponent
       self.token == "X" ? "O" : "X"
     end
