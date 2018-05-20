@@ -9,7 +9,7 @@ module Players
       if !board.taken?( "5" )
         move = "5"
       elsif ready_to_win?( board )
-        block
+        move = ready_to_win?( board )
       elsif CORNER_MOVES.any? { |corner| !board.taken?( corner ) }
         move = corner_move( board )
       else
