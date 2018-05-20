@@ -22,6 +22,10 @@ class Game
     @board.turn_count.even? ? @player_1 : @player_2
   end
 
+  def win_combos 
+    WIN_COMBINATIONS
+  end
+
   # Checks if there is a winner by testing whether board positions
   # for each possible winning combination are filled with one player's moves
   def won?
