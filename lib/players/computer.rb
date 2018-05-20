@@ -1,10 +1,10 @@
 module Players
 
   class Computer < Player
-    POSSIBLE_MOVES = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
-    CORNER_MOVES = ["1", "3", "7", "9"]
+    POSSIBLE_MOVES = [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    CORNER_MOVES = [ "1", "3", "7", "9" ]
 
-    def move(board)
+    def move( board )
       move = nil
       if !board.taken?( "5" )
         move = "5"
@@ -16,7 +16,7 @@ module Players
       move
     end
 
-    def random_move(board)
+    def random_move( board )
       move = POSSIBLE_MOVES.sample
       while board.taken?( move )
         move = POSSIBLE_MOVES.sample
@@ -24,13 +24,17 @@ module Players
       move
     end
 
-    def corner_move(board)
+    def corner_move( board )
       move = CORNER_MOVES.sample
       while board.taken?( move )
         move = CORNER_MOVES.sample
       end
       move
     end
+
+    def ready_to_win?( board )
+
+      
 
   end
 end
