@@ -23,8 +23,12 @@ module Players
     end
 
     def corner_move(board)
-      
-
+      move = CORNER_MOVES.sample
+      while board.taken?( move )
+        move = CORNER_MOVES.sample
+      end
+      move
+    end
+    
   end
-
 end
