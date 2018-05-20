@@ -36,20 +36,15 @@ module Players
 
     def ready_to_win?( board )
       Game::WIN_COMBINATIONS.detect do |win_combo|
-        win_index_1 = win_combo[0]
-        win_index_2 = win_combo[1]
-        win_index_3 = win_combo[2]
+        if win_combo.select { |index| board.position( index + 1 ) == token }.size == 2 &&
+           win_combo.any? { |index| board.position( index + 1 ) == " " }
+           move = win_combo.select { |index| !board.taken?( index + 1 ) }
+           move = (move.to_i + 1).to_s
+        end
 
-        board_combo = [
-          board.cells[ win_index_1 ],
-          board.cells[ win_index_2 ],
-          board.cells[ win_index_3 ]
-        ]
-
-        ( board_combo[ 0 ] == opponent && board_combo[ 1 ] == opponent && board_combo[ 3 ] == " " ) ||
-        ( board_combo[ 0 ] == opponent && board_combo[ 1 ] == " " && board_combo[ 3 ] == opponent ) ||
-        ( board_combo[ 0 ] == " " && board_combo[ 1 ] == opponent && board_combo[ 3 ] == opponent )
-      end
+        # ( board_combo[ 0 ] == opponent && board_combo[ 1 ] == opponent && board_combo[ 3 ] == " " ) ||
+        # ( board_combo[ 0 ] == opponent && board_combo[ 1 ] == " " && board_combo[ 3 ] == opponent ) ||
+        # ( board_combo[ 0 ] == " " && board_combo[ 1 ] == opponent && board_combo[ 3 ] == opponent )
     end
 
     def block( board )
