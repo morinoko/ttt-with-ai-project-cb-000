@@ -1,7 +1,7 @@
 module Players
 
   class Computer < Player
-    POSSIBLE_MOVES = (1..9).to_a.collect { |position| position.to_s }
+    POSSIBLE_MOVES = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
     CORNER_MOVES = ["1", "3", "7", "9"]
 
     def move(board)
