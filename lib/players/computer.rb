@@ -33,13 +33,26 @@ module Players
     end
 
     def ready_to_win?( board )
+      board.win_combos.detect do |combo|
+        win_index_1 = win_combo[0]
+        win_index_2 = win_combo[1]
+        win_index_3 = win_combo[2]
 
+        board_combo = [
+          board.cells[ win_index_1 ],
+          board.cells[ win_index_2 ],
+          board.cells[ win_index_3 ]
+        ]
+
+        ( board_combo[ 0 ] == opponent && board_combo[ 1 ] == opponent && board_combo[ 3 ] == " " ) ||
+        ( board_combo[ 0 ] == opponent && board_combo[ 1 ] == " " && board_combo[ 3 ] == opponent ) ||
+        ( board_combo[ 0 ] == " " && board_combo[ 1 ] == opponent && board_combo[ 3 ] == opponent )
 
     end
 
     def opponent
       self.token == "X" ? "O" : "X"
     end
-    
+
   end
 end
